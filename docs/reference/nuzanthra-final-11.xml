@@ -1,0 +1,766 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:css='false' b:version='2' class='v2' expr:dir='data:blog.languageDirection' lang='id' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+
+<head>
+  <meta charset='UTF-8'/>
+  <meta content='width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=5.0,viewport-fit=cover' name='viewport'/>
+  <b:include data='blog' name='all-head-content'/>
+  
+  <title><b:if cond='data:view.isSingleItem'><data:blog.pageName/> - <data:blog.title/><b:else/><data:blog.pageTitle/></b:if></title>
+  
+  <b:if cond='data:view.description'>
+    <meta expr:content='data:view.description' name='description'/>
+  <b:elseif cond='data:view.isHomepage'/>
+    <meta expr:content='data:blog.title + &quot; - Eksplorasi Teknologi, Wisata, Bisnis, dan Sains.&quot;' name='description'/>
+  </b:if>
+
+  <link expr:href='data:blog.url.canonical' rel='canonical'/>
+  <link crossorigin='' href='https://fonts.gstatic.com' rel='preconnect'/>
+  <link crossorigin='' href='https://blogger.googleusercontent.com' rel='preconnect'/>
+  <link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap' rel='stylesheet'/>
+<b:template-skin>
+  <![CDATA[
+    /* ============================================================
+       NUZANTHRA ULTIMATE 2026 - RAPI & COMPACT LAYOUT v12.8
+       - Width: Compact (Lebih pendek dari lebar layar PC)
+       - Header: Static Relative (Tetap di atas, tidak melayang)
+       - Footer: Forced Horizontal 4-Columns (Kiri ke Kanan)
+       ============================================================ */
+
+    /* 1. RESET & COMPACT CANVAS */
+    body#layout {
+      background-color: #f1f5f9 !important;
+      padding: 30px !important; /* Memberi ruang di sekeliling area kerja */
+      margin: 0 !important;
+      font-family: 'Inter', sans-serif !important;
+    }
+    body#layout * { box-sizing: border-box !important; }
+    body#layout .section h4 { display: none !important; } /* Bersih ala JetTheme */
+
+    /* 2. GLOBAL CONTAINER: DIBUAT LEBIH PENDEK/RAMPING */
+    body#layout .container,
+    body#layout #header-logo,
+    body#layout #ticker-section,
+    body#layout #featured-slider,
+    body#layout #content-wrapper,
+    body#layout footer {
+      width: 94% !important; /* Tidak menempel ke pinggir layar */
+      max-width: 1200px !important; /* Ukuran ideal agar tidak terlalu lebar */
+      margin: 0 auto 20px auto !important; /* Rata tengah secara otomatis */
+      float: none !important;
+    }
+
+    /* 3. PENANDA BAGIAN */
+    body#layout #header-logo:before,
+    body#layout #ticker-section:before,
+    body#layout #featured-slider:before,
+    body#layout #main-loop:before,
+    body#layout #sidebar-right:before,
+    body#layout footer:before {
+      display: block !important;
+      padding: 10px 15px !important;
+      margin-bottom: 12px !important;
+      color: #fff !important;
+      font-size: 11px !important;
+      font-weight: 800 !important;
+      text-transform: uppercase !important;
+      border-radius: 6px !important;
+    }
+
+    body#layout #header-logo:before { content: "1. HEADER SECTION"; background: #ec4899 !important; }
+    body#layout #ticker-section:before { content: "2. TICKER NEWS"; background: #6366f1 !important; }
+    body#layout #featured-slider:before { content: "3. FEATURED SLIDER"; background: #8b5cf6 !important; }
+    body#layout #main-loop:before { content: "4. MAIN CONTENT AREA"; background: #ec4899 !important; }
+    body#layout #sidebar-right:before { content: "5. SIDEBAR AREA"; background: #06b6d4 !important; }
+    body#layout footer:before { content: "6. FOOTER (4 COLUMNS HORIZONTAL)"; background: #020617 !important; }
+
+    /* 4. HEADER STATIC (DIAM) */
+    body#layout header,
+    body#layout #header-logo {
+      position: relative !important; /* Mengunci agar tidak sticky/fixed */
+      top: 0 !important;
+      background: #fff !important;
+      border: 2px solid #ec4899 !important;
+      border-radius: 12px !important;
+      z-index: 1 !important;
+    }
+
+    /* 5. MAIN & SIDEBAR GRID (70/28 RATIO) */
+    body#layout #content-wrapper {
+      display: flex !important;
+      flex-direction: row !important;
+      gap: 2% !important;
+    }
+    
+    body#layout #main-container {
+      flex: 0 0 70% !important;
+      max-width: 70% !important;
+    }
+    
+    body#layout #sidebar-container {
+      flex: 0 0 28% !important;
+      max-width: 28% !important;
+    }
+
+    /* Kotak Widget Dashed */
+    body#layout #main-loop,
+    body#layout #sidebar-right {
+      border: 2px dashed #cbd5e1 !important;
+      padding: 15px !important;
+      border-radius: 12px !important;
+      min-height: 150px !important;
+      background: #ffffff !important;
+    }
+
+    /* 6. FOOTER: PAKSA 4 KOLOM BERDAMPINGAN (HORIZONTAL) */
+    body#layout footer {
+      background: #f8fafc !important;
+      border: 2px solid #020617 !important;
+      padding: 25px !important;
+      border-radius: 12px !important;
+    }
+
+    body#layout .footer-inner {
+      display: flex !important;
+      flex-direction: row !important;
+      flex-wrap: nowrap !important; /* Paksa satu baris, dilarang turun ke bawah */
+      gap: 15px !important;
+      width: 100% !important;
+    }
+
+    body#layout .footer-col {
+      flex: 1 !important; /* Membagi rata lebar kolom */
+      width: 24% !important;
+      border: 1px dashed #cbd5e1 !important;
+      padding: 10px !important;
+      min-width: 0 !important; /* Mencegah widget lebar merusak grid */
+    }
+
+    /* HIDDEN LIVE ELEMENTS */
+    body#layout .nav-tools-flex,
+    body#layout .header-actions,
+    body#layout #navOverlay,
+    body#layout .ticker-label,
+    body#layout .slider-nav-btn {
+      display: none !important;
+    }
+/* Watermark Versi di pojok kanan atas (jelas & elegan) */
+    body#layout::before {
+      content: 'NUZANTHRA ULTIMATE v1.5 - MODE LAYOUT' !important;
+      position: fixed !important;
+      top: 15px !important;
+      right: 15px !important;
+      padding: 8px 16px !important;
+      background: linear-gradient(135deg, #ec4899, #06b6d4) !important;
+      color: white !important;
+      font-size: 13px !important;
+      font-weight: bold !important;
+      border-radius: 8px !important;
+      z-index: 999999 !important;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25) !important;
+      pointer-events: none !important;
+    }
+  ]]>
+</b:template-skin>
+  <b:skin><![CDATA[
+/* ================================================ 
+   NUZANTHRA ULTIMATE 2026 - MASTER FINAL STABLE
+================================================ */
+
+:root {
+  --primary: #ec4899;
+  --secondary: #06b6d4;
+  --bg: #ffffff;
+  --surface: #f8fafc;
+  --text: #0f172a;
+  --text-soft: #334155;
+  --border: #e2e8f0;
+  --radius: 12px;
+  --shadow: 0 4px 12px rgba(0,0,0,0.06);
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+body.dark-mode {
+  --bg: #0f172a;
+  --surface: #1e293b;
+  --text: #f8fafc;
+  --text-soft: #cbd5e1;
+  --border: #334155;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  transition: background var(--transition);
+  overflow-x: hidden;
+}
+.container { width:100%; max-width:1200px; margin:0 auto; padding:0 20px; }
+
+/* [HEADER & NAVIGATION] */
+header {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  color: white; padding: 0.8rem 0; position: sticky; top: 0; z-index: 5000;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.header-inner { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
+.logo h1, .logo .title { font-size: 1.6rem; font-weight: 800; margin:0; }
+.logo a { color: white; text-decoration: none; }
+
+nav#main-nav ul { display: flex; gap: 1.2rem; list-style: none; align-items: center; }
+nav#main-nav a { color: white; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; text-decoration: none; }
+
+#btnCloseMenu { display: none; }
+
+/* [MEGA MENU FIX] */
+.has-mega { position: relative; }
+.has-mega:hover > .mega { opacity: 1 !important; visibility: visible !important; display: grid !important; transform: translateX(-50%) translateY(0); }
+.mega {
+  position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(15px);
+  background: var(--surface); padding: 1.5rem; border-radius: 12px; box-shadow: var(--shadow);
+  min-width: 500px; display: none; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;
+  opacity: 0; visibility: hidden; transition: var(--transition); border: 1px solid var(--border); z-index: 10000;
+}
+.mega h4 { color: var(--primary); margin-bottom: 0.8rem; font-size: 13px; text-transform: uppercase; font-weight: 700; border-bottom: 2px solid var(--border); padding-bottom: 5px; }
+.mega a { color: var(--text) !important; font-weight: 500; font-size: 13px; display: block; padding: 5px 0; text-transform: none !important; text-decoration: none; }
+.mega a:hover { color: var(--primary) !important; padding-left: 5px; }
+
+/* [TICKER] */
+.ticker-container { display: flex; align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-top: 20px; overflow: hidden; height: 45px; box-shadow: var(--shadow); }
+.ticker-label { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: #fff; padding: 0 15px; height: 100%; display: flex; align-items: center; font-size: 12px; font-weight: 800; text-transform: uppercase; }
+.ticker-content { flex: 1; overflow: hidden; white-space: nowrap; }
+.ticker-content p { display: inline-block; padding-left: 100%; animation: ticker-move 30s linear infinite; font-size: 14px; color: var(--text); margin: 0; }
+@keyframes ticker-move { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+
+/* [SLIDER] */
+.slider-container { margin: 20px 0 30px 0; width: 100%; position: relative; }
+.slider-header h3 { font-size: 0.9rem; font-weight: 800; border-left: 4px solid var(--primary); padding-left: 10px; margin-bottom: 12px; color: var(--text); text-transform: uppercase; }
+.css-slider-wrapper { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 15px; scrollbar-width: none; }
+.css-slider-wrapper::-webkit-scrollbar { display: none; }
+
+.slider-card { scroll-snap-align: start; flex: 0 0 calc(50% - 6px); background: var(--surface); border-radius: 12px; border: 1px solid var(--border); overflow: hidden; box-shadow: var(--shadow); transition: 0.3s; }
+@media (min-width: 851px) { .slider-card { flex: 0 0 calc(25% - 9px); } }
+.slider-thumb { aspect-ratio: 16/9; overflow: hidden; position: relative; background: #eee; }
+.slider-thumb img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+.slider-card:hover .slider-thumb img { transform: scale(1.1); }
+.slider-info { padding: 10px; }
+.slider-info h4 { font-size: 0.85rem; font-weight: 700; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.slider-info a { color: var(--text); text-decoration: none; }
+
+/* [MAIN GRID] */
+#content-wrapper { display: flex; flex-wrap: wrap; gap: 30px; padding-bottom: 3rem; }
+#main-container { flex: 1; min-width: 0; }
+#sidebar-container { width: 300px; flex-shrink: 0; }
+#sidebar-container .widget { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 25px; box-shadow: var(--shadow); }
+
+/* [POSTS GRID] */
+.posts-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; }
+.post-card { background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); overflow: hidden; transition: 0.3s; }
+.thumbnail { aspect-ratio: 16/9; overflow: hidden; background: #eee; }
+.thumbnail img { width: 100%; height: 100%; object-fit: cover; transition: 0.3s; }
+.post-card:hover .thumbnail img { transform: scale(1.05); }
+.post-info { padding: 1.2rem; }
+.post-info h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+.post-info a { color: var(--text); text-decoration: none; }
+
+/* [FOOTER] */
+footer { background: #020617; color: #f1f5f9; padding: 4rem 0 2rem; margin-top: 4rem; border-top: 4px solid var(--primary); }
+.footer-inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2.5rem; }
+.footer-col { flex: 1 1 200px; }
+.footer-col h4 { color: white; margin-bottom: 1.2rem; font-size: 1.1rem; font-weight: 700; border-bottom: 2px solid var(--secondary); padding-bottom: 5px; display: inline-block; }
+.footer-bottom { text-align: center; margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem; color: #cbd5e1; }
+
+/* ================================================
+   FIX FINAL MOBILE & DESKTOP NAVBAR
+================================================ */
+
+/* Sembunyikan Ikon Garis 3 di Layar PC (Desktop) */
+#btnOpenMenu { display: none !important; }
+
+.nav-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5); z-index: 8500; display: none;
+}
+.nav-overlay.active { display: block !important; }
+
+@media (max-width: 850px) {
+  /* 1. Munculkan Ikon Garis 3 Hanya di Mobile */
+  #btnOpenMenu { display: flex !important; }
+
+  /* 2. Hilangkan Sidebar Sepenuhnya di Mobile */
+  #sidebar-container, #sidebar-right { display: none !important; }
+
+  /* 3. Anti-Overflow Global */
+  body, html, .container, header, .header-inner, #content-wrapper {
+    overflow-x: hidden !important; width: 100% !important; max-width: 100vw !important;
+  }
+  .header-inner { flex-wrap: wrap !important; justify-content: space-between !important; }
+  .nav-tools-flex { flex-wrap: nowrap !important; justify-content: flex-end !important; }
+  .header-actions { flex-wrap: nowrap !important; }
+
+  /* 4. Hamburger Menu - Tidak Terpotong Kiri */
+  #main-nav {
+    position: fixed; top: 0; left: -100% !important; 
+    width: 90vw !important; max-width: 340px !important; height: 100%;
+    background: var(--surface); z-index: 9000; 
+    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 60px 15px 20px 15px !important; 
+    box-shadow: 5px 0 20px rgba(0,0,0,0.1); 
+    box-sizing: border-box !important;
+    overflow-y: auto !important; overflow-x: hidden !important;
+  }
+  #main-nav.active { left: 0 !important; }
+  #main-nav ul { flex-direction: column !important; align-items: flex-start !important; padding-left: 0 !important; margin-left: 0 !important; width: 100% !important; gap: 0 !important; }
+  #main-nav ul li { width: 100% !important; border-bottom: 1px solid var(--border); }
+  #main-nav a { color: var(--text) !important; padding: 15px 0 !important; display: block !important; font-size: 0.95rem !important; }
+  #btnCloseMenu { display: block !important; position: absolute; top: 15px; right: 15px !important; font-size: 2rem; border: none; background: none; color: var(--text); cursor: pointer; }
+
+  /* 5. Mega Menu - Full Width, Stack Vertikal, No Overflow */
+  .has-mega .mega {
+    position: relative !important; left: 0 !important; right: 0 !important; transform: none !important;
+    width: 100% !important; min-width: 0 !important; margin: 10px 0 0 0 !important; padding: 15px !important;
+    box-shadow: none !important; border: none !important; background: var(--surface) !important; display: none !important;
+  }
+  .has-mega:hover > .mega, .has-mega:active > .mega, .has-mega:focus-within > .mega {
+    display: block !important; opacity: 1 !important; visibility: visible !important;
+  }
+  .mega div { width: 100% !important; margin-bottom: 20px !important; }
+  .mega ul { flex-direction: column !important; gap: 10px !important; }
+  .mega h4 { font-size: 1.1rem !important; margin-bottom: 12px !important; }
+  .mega a { padding: 12px 0 !important; font-size: 1rem !important; border-bottom: 1px solid var(--border) !important; }
+  
+  .posts-grid { grid-template-columns: 1fr; }
+}
+
+/* [SEARCH & ACTIONS] */
+.header-actions { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+.action-btn { background: rgba(255,255,255,0.2); border: none; width: 40px; height: 40px; border-radius: 50%; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
+.action-btn:hover { background: rgba(255,255,255,0.35); transform: scale(1.05); }
+
+.search-dropdown { position: absolute; top: calc(100% + 10px); right: 0; width: 300px; background: var(--surface); padding: 12px; border-radius: 12px; box-shadow: var(--shadow); border: 1px solid var(--border); display: none; z-index: 99999; }
+.search-dropdown.active { display: block !important; }
+
+/* [ACCESSIBILITY FIXES] */
+.comment-delete { color: var(--text-soft); width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
+.comment-delete:hover { color: var(--primary); }
+a:focus, button:focus { outline: 3px solid var(--primary); outline-offset: 2px; }
+
+/* ================================================
+   FIX FINAL SEARCH DROPDOWN DI HP
+   - Kolom input pencarian tampil penuh & mudah dilihat
+================================================ */
+
+@media (max-width: 850px) {
+  .search-dropdown {
+    top: calc(100% + 8px) !important;     /* lebih rapat ke bawah icon */
+    right: 0 !important;                  /* align ke kanan icon */
+    left: auto !important;
+    width: 90vw !important;               /* 90% lebar layar HP */
+    max-width: 320px !important;          /* batas maksimal biar nyaman */
+    margin-right: -10px !important;       /* sedikit overlap ke kiri agar tidak terpotong kanan */
+    padding: 12px !important;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 12px !important;
+    background: var(--surface) !important;
+    z-index: 100000 !important;           /* lebih tinggi dari nav-overlay */
+  }
+
+  .search-dropdown input {
+    padding: 12px 14px !important;
+    font-size: 1rem !important;
+    border-radius: 8px !important;
+    border: 1px solid var(--border) !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Pastikan dropdown tidak tertutup header sticky */
+  header {
+    z-index: 5001 !important;             /* header tetap di bawah dropdown */
+  }
+}
+
+/* Di desktop tetap seperti semula */
+@media (min-width: 851px) {
+  .search-dropdown {
+    width: 320px !important;
+    right: -8px !important;
+    margin-right: 0 !important;
+  }
+}
+
+/* FIX FINAL: GAMBAR ARTIKEL TIDAK TERPOTONG DI HP */
+.post-body img, 
+.entry-content img, 
+.post-body .thumbnail img {
+  aspect-ratio: auto !important;
+  object-fit: contain !important;
+  height: auto !important;
+  max-height: none !important;
+  width: 100% !important;
+  display: block !important;
+}
+]]></b:skin>
+</head>
+
+<body>
+<header role='banner'>
+  <div class='container header-inner'>
+    <div class='logo'>
+      <b:section id='header-logo' maxwidgets='1' showaddelement='no'>
+        <b:widget id='Header1' locked='true' title='ikan-hias-unik (Header)' type='Header' version='1'>
+          <b:widget-settings>
+            <b:widget-setting name='displayUrl'/>
+            <b:widget-setting name='displayHeight'>0</b:widget-setting>
+            <b:widget-setting name='sectionWidth'>-1</b:widget-setting>
+            <b:widget-setting name='useImage'>false</b:widget-setting>
+            <b:widget-setting name='shrinkToFit'>false</b:widget-setting>
+            <b:widget-setting name='imagePlacement'>BEHIND</b:widget-setting>
+            <b:widget-setting name='displayWidth'>0</b:widget-setting>
+          </b:widget-settings>
+          <b:includable id='main'>
+            <div class='header-info'>
+              <b:if cond='data:view.isHomepage'>
+                <h1 class='title'><a expr:href='data:blog.homepageUrl'><data:title/></a></h1>
+              <b:else/>
+                <div class='title' style='font-size: 1.6rem; font-weight: 800;'><a expr:href='data:blog.homepageUrl'><data:title/></a></div>
+              </b:if>
+            </div>
+          </b:includable>
+          <b:includable id='description'>
+  <div class='descriptionwrapper'>
+    <p class='description'><span><data:description/></span></p>
+  </div>
+</b:includable>
+          <b:includable id='title'>
+  <b:tag cond='data:blog.url != data:blog.homepageUrl' expr:href='data:blog.homepageUrl' name='a'>
+    <data:title/>
+  </b:tag>
+</b:includable>
+        </b:widget>
+      </b:section>
+    </div>
+
+    <div class='nav-tools-flex'>
+      <button aria-label='Buka Menu' class='action-btn' id='btnOpenMenu' type='button'>
+        <svg height='24' viewBox='0 0 24 24' width='24'><path d='M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z' fill='currentColor'/></svg>
+      </button>
+
+      <nav id='main-nav' role='navigation'>
+        <button aria-label='Tutup Menu' id='btnCloseMenu' type='button'>&#215;</button>
+        <ul>
+          <li><a href='/'>BERANDA</a></li>
+          <li class='has-mega'><a href='#'>TEKNOLOGI</a>
+            <div class='mega'>
+              <div><h4>Digital</h4><ul><li><a href='/search/label/AI'>AI &amp; Tech</a></li><li><a href='/search/label/Blogger'>Blogger</a></li></ul></div>
+              <div><h4>Gadget</h4><ul><li><a href='/search/label/Gadget'>Gadget News</a></li><li><a href='/search/label/SEO'>SEO Tips</a></li></ul></div>
+            </div>
+          </li>
+          <li class='has-mega'><a href='#'>WISATA</a>
+            <div class='mega'>
+              <div><h4>Destinasi</h4><ul><li><a href='/search/label/Destinasi'>Lokal</a></li><li><a href='/search/label/Kuliner'>Kuliner</a></li></ul></div>
+            </div>
+          </li>
+          <!-- KATEGORI BISNIS DENGAN MEGA MENU -->
+          <li class='has-mega'><a href='#'>BISNIS</a>
+            <div class='mega'>
+              <div><h4>Finance</h4><ul><li><a href='/search/label/Investasi'>Investasi</a></li><li><a href='/search/label/Saham'>Pasar Modal</a></li></ul></div>
+              <div><h4>Marketing</h4><ul><li><a href='/search/label/UMKM'>UMKM</a></li><li><a href='/search/label/DigitalMarketing'>Digital Ads</a></li></ul></div>
+            </div>
+          </li>
+          <!-- KATEGORI SAINS DENGAN MEGA MENU -->
+          <li class='has-mega'><a href='#'>SAINS</a>
+            <div class='mega'>
+              <div><h4>Eksplorasi</h4><ul><li><a href='/search/label/Astronomi'>Astronomi</a></li><li><a href='/search/label/Fisika'>Fisika</a></li></ul></div>
+              <div><h4>Lingkungan</h4><ul><li><a href='/search/label/Biologi'>Biologi</a></li><li><a href='/search/label/Eksperimen'>Sains Populer</a></li></ul></div>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <div class='nav-overlay' id='navOverlay'/>
+    </div>
+
+    <div class='header-actions'>
+      <button aria-label='Cari' class='action-btn' id='btnOpenSearch'><svg height='20' viewBox='0 0 24 24' width='20'><path d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z' fill='currentColor'/></svg></button>
+      <div class='search-dropdown' id='searchDrop'>
+        <form action='/search' method='get'><input aria-label='Ketik pencarian' name='q' placeholder='Cari artikel...' type='text'/></form>
+      </div>
+      <button aria-label='Ganti Tema' class='action-btn' id='btnThemeToggle'>
+        <svg class='moon-icon' height='20' viewBox='0 0 24 24' width='20'><path d='M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-3.03 0-5.5-2.47-5.5-5.5 0-1.82.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z' fill='currentColor'/></svg>
+        <svg class='sun-icon' height='20' viewBox='0 0 24 24' width='20'><path d='M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5z' fill='currentColor'/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id='main-content' role='main'>
+  <div class='container'>
+    <b:section id='ticker-section' maxwidgets='1' showaddelement='yes'>
+      <b:widget id='Text100' locked='false' title='Update Terbaru' type='Text' version='1'>
+        <b:widget-settings>
+          <b:widget-setting name='content'>perang Amerika vs Iran</b:widget-setting>
+        </b:widget-settings>
+        <b:includable id='main'>
+          <div class='ticker-container'>
+            <div class='ticker-label'>Breaking</div>
+            <div class='ticker-content'><p><data:content/></p></div>
+          </div>
+        </b:includable>
+      </b:widget>
+    </b:section>
+
+    <b:if cond='data:view.isHomepage'>
+      <div class='slider-container'>
+        <b:section id='featured-slider' maxwidgets='1' showaddelement='yes'>
+          <b:widget id='PopularPosts1' locked='false' title='Sorotan Pilihan' type='PopularPosts' version='1'>
+            <b:widget-settings>
+              <b:widget-setting name='numItemsToShow'>10</b:widget-setting>
+              <b:widget-setting name='showThumbnails'>true</b:widget-setting>
+              <b:widget-setting name='showSnippets'>true</b:widget-setting>
+              <b:widget-setting name='timeRange'>ALL_TIME</b:widget-setting>
+            </b:widget-settings>
+            <b:includable id='main'>
+              <div class='slider-header'><h3><data:title/></h3></div>
+              <div class='css-slider-wrapper' id='sliderWrapper'>
+                <b:loop index='i' values='data:posts' var='post'>
+                  <article class='slider-card'>
+                    <div class='slider-thumb'>
+                      <a expr:href='data:post.href'>
+                        <b:if cond='data:i == 0'>
+                          <img decoding='async' expr:alt='data:post.title ? data:post.title : &quot;Hero Image&quot;' expr:src='resizeImage(data:post.featuredImage, 600, &quot;16:9&quot;)' fetchpriority='high' height='337' loading='eager' style='aspect-ratio: 16/9; object-fit: cover;' width='600'/>
+                        <b:else/>
+                          <img decoding='async' expr:alt='data:post.title ? data:post.title : &quot;Slider Image&quot;' expr:src='resizeImage(data:post.featuredImage, 600, &quot;16:9&quot;)' height='337' loading='lazy' style='aspect-ratio: 16/9; object-fit: cover;' width='600'/>
+                        </b:if>
+                      </a>
+                    </div>
+                    <div class='slider-info'><h4><a expr:href='data:post.href'><data:post.title/></a></h4></div>
+                  </article>
+                </b:loop>
+              </div>
+            </b:includable>
+          </b:widget>
+        </b:section>
+      </div>
+    </b:if>
+
+    <div id='content-wrapper'>
+      <section id='main-container'>
+        <b:section id='main-loop' preferred='yes' showaddelement='no'>
+          <b:widget id='Blog1' locked='true' title='Postingan Blog' type='Blog' version='1'>
+            <b:widget-settings>
+              <b:widget-setting name='commentLabel'>Comments</b:widget-setting>
+              <b:widget-setting name='showShareButtons'>false</b:widget-setting>
+              <b:widget-setting name='authorLabel'>by</b:widget-setting>
+              <b:widget-setting name='style.unittype'>TextAndImage</b:widget-setting>
+              <b:widget-setting name='timestampLabel'>on</b:widget-setting>
+              <b:widget-setting name='reactionsLabel'/>
+              <b:widget-setting name='showAuthorProfile'>false</b:widget-setting>
+              <b:widget-setting name='style.layout'>1x1</b:widget-setting>
+              <b:widget-setting name='showLocation'>false</b:widget-setting>
+              <b:widget-setting name='showTimestamp'>false</b:widget-setting>
+              <b:widget-setting name='postsPerAd'>1</b:widget-setting>
+              <b:widget-setting name='style.bordercolor'>#ffffff</b:widget-setting>
+              <b:widget-setting name='showDateHeader'>false</b:widget-setting>
+              <b:widget-setting name='style.textcolor'>#ffffff</b:widget-setting>
+              <b:widget-setting name='showCommentLink'>false</b:widget-setting>
+              <b:widget-setting name='style.urlcolor'>#ffffff</b:widget-setting>
+              <b:widget-setting name='postLocationLabel'>Location:</b:widget-setting>
+              <b:widget-setting name='showAuthor'>false</b:widget-setting>
+              <b:widget-setting name='style.linkcolor'>#ffffff</b:widget-setting>
+              <b:widget-setting name='style.bgcolor'>#ffffff</b:widget-setting>
+              <b:widget-setting name='showLabels'>false</b:widget-setting>
+              <b:widget-setting name='postLabelsLabel'>Tags</b:widget-setting>
+              <b:widget-setting name='showBacklinks'>false</b:widget-setting>
+              <b:widget-setting name='showInlineAds'>false</b:widget-setting>
+              <b:widget-setting name='showReactions'>false</b:widget-setting>
+            </b:widget-settings>
+            <b:includable id='main'>
+              <b:if cond='data:view.isMultipleItems'>
+                <div class='posts-grid'>
+                  <b:loop values='data:posts' var='post'>
+                    <article class='post-card'>
+                      <b:if cond='data:post.firstImageUrl'>
+                        <div class='thumbnail'>
+                          <a expr:href='data:post.url'>
+                            <img decoding='async' expr:alt='data:post.title ? data:post.title : &quot;Thumbnail&quot;' expr:src='resizeImage(data:post.firstImageUrl, 600, &quot;16:9&quot;)' height='337' loading='lazy' style='aspect-ratio: 16/9; object-fit: cover;' width='600'/>
+                          </a>
+                        </div>
+                      </b:if>
+                      <div class='post-info'>
+                        <h2><a expr:href='data:post.url'><data:post.title/></a></h2>
+                        <div class='post-meta'><span><data:post.author/></span> &#8226; <span><data:post.date/></span></div>
+                      </div>
+                    </article>
+                  </b:loop>
+                </div>
+              <b:else/>
+                <b:loop values='data:posts' var='post'>
+                  <article class='post-body'>
+                    <h1 class='post-title' style='font-size: 2rem; font-weight: 800; margin-bottom: 20px;'><data:post.title/></h1>
+                    <div class='entry-content'><data:post.body/></div>
+                  </article>
+                </b:loop>
+              </b:if>
+            </b:includable>
+            <b:includable id='backlinkDeleteIcon' var='backlink'/>
+            <b:includable id='backlinks' var='post'/>
+            <b:includable id='comment-form' var='post'/>
+            <b:includable id='commentDeleteIcon' var='comment'>
+              <span expr:class='&quot;item-control &quot; + data:comment.adminClass'>
+                <a aria-label='Hapus komentar ini' class='comment-delete' expr:href='data:comment.deleteUrl' expr:title='data:top.deleteCommentMsg'>
+                  <svg fill='none' height='20' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24' width='20'><path d='M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m5 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M10 11v6M14 11v6'/></svg>
+                </a>
+              </span>
+            </b:includable>
+            <b:includable id='comment_count_picker' var='post'/>
+            <b:includable id='comment_picker' var='post'/>
+            <b:includable id='comments' var='post'>
+              <div class='comments' id='comments'>
+                <a name='comments'/>
+                <h4>Diskusi:</h4>
+                <div id='comment-holder'><data:post.commentHtml/></div>
+                <b:if cond='data:post.allowNewComments'>
+                  <iframe allowtransparency='true' expr:height='data:cmtIframeInitialHeight' frameborder='0' id='comment-editor' name='comment-editor' src='' width='100%'/>
+                </b:if>
+              </div>
+            </b:includable>
+            <b:includable id='feedLinks'/>
+            <b:includable id='feedLinksBody' var='links'/>
+            <b:includable id='iframe_comments' var='post'/>
+            <b:includable id='mobile-index-post' var='post'/>
+            <b:includable id='mobile-main' var='top'/>
+            <b:includable id='mobile-nextprev'/>
+            <b:includable id='mobile-post' var='post'/>
+            <b:includable id='nextprev'/>
+            <b:includable id='post' var='post'/>
+            <b:includable id='postQuickEdit' var='post'/>
+            <b:includable id='shareButtons' var='post'/>
+            <b:includable id='status-message'/>
+            <b:includable id='threaded-comment-form' var='post'/>
+            <b:includable id='threaded_comment_js' var='post'/>
+            <b:includable id='threaded_comments' var='post'/>
+          </b:widget>
+        </b:section>
+      </section>
+
+      <aside id='sidebar-container' role='complementary'>
+        <b:section id='sidebar-right' preferred='yes' showaddelement='yes'>
+          <b:widget id='PopularPosts2' locked='false' title='Terpopuler' type='PopularPosts' version='1'>
+            <b:widget-settings>
+              <b:widget-setting name='numItemsToShow'>10</b:widget-setting>
+              <b:widget-setting name='showThumbnails'>true</b:widget-setting>
+              <b:widget-setting name='showSnippets'>true</b:widget-setting>
+              <b:widget-setting name='timeRange'>LAST_YEAR</b:widget-setting>
+            </b:widget-settings>
+            <b:includable id='main'>
+              <b:if cond='data:title != &quot;&quot;'><h2><data:title/></h2></b:if>
+              <div class='popular-list'>
+                <b:loop values='data:posts' var='post'>
+                  <div style='display:flex; gap:12px; margin-bottom:15px; align-items:center;'>
+                    <b:if cond='data:post.featuredImage'>
+                      <img decoding='async' expr:alt='data:post.title' expr:src='resizeImage(data:post.featuredImage, 60, &quot;1:1&quot;)' height='60' loading='lazy' style='border-radius:50%; object-fit:cover;' width='60'/>
+                    </b:if>
+                    <a expr:href='data:post.href' style='font-size:0.9rem; font-weight:600; color:var(--text); text-decoration:none;'><data:post.title/></a>
+                  </div>
+                </b:loop>
+              </div>
+            </b:includable>
+          </b:widget>
+        </b:section>
+      </aside>
+    </div>
+  </div>
+</main>
+
+<footer role='contentinfo'>
+  <div class='container'>
+    <div class='footer-inner'>
+      <b:section class='footer-col' id='footer-sec-1' maxwidgets='2' showaddelement='yes'/>
+      <b:section class='footer-col' id='footer-sec-2' maxwidgets='5' showaddelement='yes'/>
+      <b:section class='footer-col' id='footer-sec-3' maxwidgets='5' showaddelement='yes'/>
+      <b:section class='footer-col' id='footer-sec-4' maxwidgets='2' showaddelement='yes'/>
+    </div>
+    <div class='footer-bottom'>
+      <p>
+        &#169; <span id='y-copy'/> 
+        <a href='https://www.nuzanthra.biz.id/' style='color: inherit; text-decoration: none; font-weight: bold;'>NUZANTHRA</a> 
+        &#8226; All Rights Reserved
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script type='text/javascript'>
+//<![CDATA[
+(function() {
+  /* Auto Year */
+  const yCopy = document.getElementById('y-copy');
+  if (yCopy) yCopy.textContent = new Date().getFullYear();
+
+  /* JavaScript Navigasi Mobile Stabil */
+  const btnOpenMenu = document.getElementById('btnOpenMenu');
+  const btnCloseMenu = document.getElementById('btnCloseMenu');
+  const mainNav = document.getElementById('main-nav');
+  const navOverlay = document.getElementById('navOverlay');
+
+  const openNav = () => {
+    mainNav.classList.add('active');
+    navOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeNav = () => {
+    mainNav.classList.remove('active');
+    navOverlay.classList.remove('active');
+    document.body.style.overflow = 'auto';
+  };
+
+  if (btnOpenMenu) btnOpenMenu.onclick = openNav;
+  if (btnCloseMenu) btnCloseMenu.onclick = closeNav;
+  if (navOverlay) navOverlay.onclick = closeNav;
+
+  /* Slider Logic */
+  const slider = document.getElementById('sliderWrapper');
+  if (slider) {
+    setInterval(() => {
+      const maxScroll = slider.scrollWidth - slider.clientWidth;
+      if (slider.scrollLeft >= maxScroll - 5) {
+        slider.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        slider.scrollBy({ left: 300, behavior: 'smooth' });
+      }
+    }, 5000);
+  }
+
+  /* Search & Theme */
+  const searchBtn = document.getElementById('btnOpenSearch');
+  const searchDrop = document.getElementById('searchDrop');
+  const searchInput = searchDrop ? searchDrop.querySelector('input') : null;
+
+  if (searchBtn && searchDrop) {
+    searchBtn.onclick = (e) => { 
+      e.stopPropagation(); 
+      searchDrop.classList.toggle('active'); 
+      if (searchDrop.classList.contains('active') && searchInput) setTimeout(() => searchInput.focus(), 100);
+    };
+    document.addEventListener('click', () => searchDrop.classList.remove('active'));
+    searchDrop.onclick = (e) => e.stopPropagation();
+    document.addEventListener('keydown', (e) => { if(e.key === 'Escape') searchDrop.classList.remove('active'); });
+  }
+
+  const themeBtn = document.getElementById('btnThemeToggle');
+  if (themeBtn) {
+    if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark-mode');
+    themeBtn.onclick = () => {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    };
+  }
+})();
+//]]>
+</script>
+</body>
+</html>
