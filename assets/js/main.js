@@ -34,6 +34,14 @@
       searchToggle.setAttribute('aria-expanded', String(open));
       searchPanel.setAttribute('aria-hidden', String(!open));
     });
+
+    document.addEventListener('click', (event) => {
+      const target = event.target;
+      if (!target || searchPanel.contains(target) || searchToggle.contains(target)) return;
+      searchPanel.classList.remove('active');
+      searchToggle.setAttribute('aria-expanded', 'false');
+      searchPanel.setAttribute('aria-hidden', 'true');
+    });
   }
 
   const menuToggle = document.getElementById('menuToggle');
@@ -78,7 +86,12 @@
     if (!sliderTrack || !slides) return;
     const width = sliderTrack.clientWidth || 1;
     const next = (index + slides) % slides;
-    sliderTrack.scrollTo({ left: next * width, behavior: 'smooth' });
+    const nextLeft = next * width;
+    if (typeof sliderTrack.scrollTo === 'function') {
+      sliderTrack.scrollTo({ left: nextLeft, behavior: 'smooth' });
+    } else {
+      sliderTrack.scrollLeft = nextLeft;
+    }
     sliderIndex = next;
   };
 
