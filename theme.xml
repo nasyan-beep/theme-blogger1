@@ -1,16 +1,1022 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<b:template xmlns='http://www.w3.org/1999/xhtml'>
-
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:templateVersion='1.0.0' expr:dir='data:blog.languageDirection' expr:lang='data:blog.locale' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
 <head>
-<title><data:blog.title/></title>
+  <meta charset='UTF-8'/>
+  <meta content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=5' name='viewport'/>
+  <b:include data='blog' name='all-head-content'/>
+  <title><data:view.title.escaped/></title>
+  <b:if cond='data:view.description'>
+    <meta expr:content='data:view.description' name='description'/>
+  </b:if>
+  <link expr:href='data:blog.url.canonical' rel='canonical'/>
+  <meta content='summary_large_image' name='twitter:card'/>
+  <b:if cond='data:view.featuredImage'>
+    <meta expr:content='data:view.featuredImage' property='og:image'/>
+  </b:if>
+  <link crossorigin='' href='https://fonts.gstatic.com' rel='preconnect'/>
+  <link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap' rel='stylesheet'/>
+  <script id='nuzanthra-theme-init'><![CDATA[(function(){try{var t=localStorage.getItem('nuzanthra-theme');if(!t&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)t='dark';document.documentElement.setAttribute('data-theme',t||'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();]]></script>
+
+  <b:skin><![CDATA[
+/* Nuzanthra Ultimate V3 MagNews Edition */
+/* Theme Designer Variables */
+/* -- Global -- */
+<Variable name="primary" description="Global: Primary Color" type="color" default="#3b82f6" value="#3b82f6"/>
+<Variable name="secondary" description="Global: Secondary Color" type="color" default="#8b5cf6" value="#8b5cf6"/>
+<Variable name="accent" description="Global: Accent Color" type="color" default="#ef4444" value="#ef4444"/>
+<Variable name="background" description="Global: Background" type="color" default="#f3f5fa" value="#f3f5fa"/>
+<Variable name="surface" description="Global: Surface" type="color" default="#ffffff" value="#ffffff"/>
+<Variable name="cardBg" description="Global: Card Background" type="color" default="#ffffff" value="#ffffff"/>
+<Variable name="text" description="Global: Text" type="color" default="#111827" value="#111827"/>
+<Variable name="mutedText" description="Global: Muted Text" type="color" default="#6b7280" value="#6b7280"/>
+<Variable name="border" description="Global: Border" type="color" default="#dbe2ee" value="#dbe2ee"/>
+<Variable name="linkColor" description="Global: Link Color" type="color" default="#2563eb" value="#2563eb"/>
+<Variable name="headingColor" description="Global: Heading Color" type="color" default="#0f172a" value="#0f172a"/>
+
+/* -- Header -- */
+<Variable name="headerBg" description="Header: Background" type="color" default="#ffffff" value="#ffffff"/>
+<Variable name="headerText" description="Header: Text" type="color" default="#0f172a" value="#0f172a"/>
+<Variable name="headerBorder" description="Header: Border Color" type="color" default="#dbe2ee" value="#dbe2ee"/>
+<Variable name="topbarBg" description="Topbar: Background" type="color" default="#0f172a" value="#0f172a"/>
+<Variable name="topbarText" description="Topbar: Text" type="color" default="#e5e7eb" value="#e5e7eb"/>
+<Variable name="topbarLink" description="Topbar: Link Color" type="color" default="#e5e7eb" value="#e5e7eb"/>
+<Variable name="menuHover" description="Menu: Hover Background" type="color" default="#eff6ff" value="#eff6ff"/>
+
+/* -- Buttons -- */
+<Variable name="buttonBg" description="Button: Background" type="color" default="#3b82f6" value="#3b82f6"/>
+<Variable name="buttonText" description="Button: Text" type="color" default="#ffffff" value="#ffffff"/>
+<Variable name="buttonRadius" description="Button: Radius" type="length" default="10px" value="10px"/>
+
+/* -- Cards -- */
+<Variable name="cardBorder" description="Card: Border" type="color" default="#dbe2ee" value="#dbe2ee"/>
+<Variable name="cardRadius" description="Card: Radius" type="length" default="16px" value="16px"/>
+<Variable name="cardShadow" description="Card: Shadow" type="text" default="0 8px 24px rgba(15, 23, 42, .08)" value="0 8px 24px rgba(15, 23, 42, .08)"/>
+
+/* -- Footer -- */
+<Variable name="footerBg" description="Footer: Background" type="color" default="#0b1220" value="#0b1220"/>
+<Variable name="footerText" description="Footer: Text" type="color" default="#e5e7eb" value="#e5e7eb"/>
+<Variable name="footerBorder" description="Footer: Border" type="color" default="#334155" value="#334155"/>
+<Variable name="footerTitle" description="Footer: Title" type="color" default="#ffffff" value="#ffffff"/>
+<Variable name="footerLink" description="Footer: Link" type="color" default="#cbd5e1" value="#cbd5e1"/>
+
+/* -- Typography -- */
+<Variable name="bodyFont" description="Typography: Body Font" type="font" default="Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif" value="Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif"/>
+<Variable name="headingFont" description="Typography: Heading Font" type="font" default="Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif" value="Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif"/>
+<Variable name="baseTextSize" description="Typography: Base Text Size" type="length" default="16px" value="16px"/>
+<Variable name="titleWeight" description="Typography: Title Weight" type="text" default="800" value="800"/>
+
+/* -- Layout -- */
+<Variable name="siteWidth" description="Layout: Site Width" type="length" default="1240px" value="1240px"/>
+<Variable name="contentGap" description="Layout: Content Gap" type="length" default="24px" value="24px"/>
+<Variable name="widgetGap" description="Layout: Widget Gap" type="length" default="18px" value="18px"/>
+
+/* -- Dark Mode -- */
+<Variable name="darkBg" description="Dark Mode: Background" type="color" default="#0b1220" value="#0b1220"/>
+<Variable name="darkSurface" description="Dark Mode: Surface" type="color" default="#111827" value="#111827"/>
+<Variable name="darkText" description="Dark Mode: Text" type="color" default="#e5e7eb" value="#e5e7eb"/>
+<Variable name="darkMuted" description="Dark Mode: Muted Text" type="color" default="#9ca3af" value="#9ca3af"/>
+<Variable name="darkHeading" description="Dark Mode: Heading" type="color" default="#f8fafc" value="#f8fafc"/>
+<Variable name="darkBorder" description="Dark Mode: Border" type="color" default="#334155" value="#334155"/>
+<Variable name="darkAccent" description="Dark Mode: Accent" type="color" default="#60a5fa" value="#60a5fa"/>
+
+/* =========================================================
+   Nuzanthra Ultimate V3 MagNews Edition
+   ========================================================= */
+
+/* 1) Root tokens / design system */
+:root {
+  --primary: $(primary);
+  --secondary: $(secondary);
+  --accent: $(accent);
+  --bg: $(background);
+  --surface: $(surface);
+  --card-bg: $(cardBg);
+  --text: $(text);
+  --muted: $(mutedText);
+  --border: $(border);
+  --link: $(linkColor);
+  --heading: $(headingColor);
+
+  --header-bg: $(headerBg);
+  --header-text: $(headerText);
+  --header-border: $(headerBorder);
+  --topbar-bg: $(topbarBg);
+  --topbar-text: $(topbarText);
+  --topbar-link: $(topbarLink);
+  --menu-hover: $(menuHover);
+
+  --btn-bg: $(buttonBg);
+  --btn-text: $(buttonText);
+  --btn-radius: $(buttonRadius);
+
+  --card-border: $(cardBorder);
+  --card-radius: $(cardRadius);
+  --card-shadow: $(cardShadow);
+
+  --footer-bg: $(footerBg);
+  --footer-text: $(footerText);
+  --footer-border: $(footerBorder);
+  --footer-title: $(footerTitle);
+  --footer-link: $(footerLink);
+
+  --font-body: $(bodyFont);
+  --font-heading: $(headingFont);
+  --text-size: $(baseTextSize);
+  --title-weight: $(titleWeight);
+
+  --site-width: $(siteWidth);
+  --content-gap: $(contentGap);
+  --widget-gap: $(widgetGap);
+
+  --dark-bg: $(darkBg);
+  --dark-surface: $(darkSurface);
+  --dark-text: $(darkText);
+  --dark-muted: $(darkMuted);
+  --dark-heading: $(darkHeading);
+  --dark-border: $(darkBorder);
+  --dark-accent: $(darkAccent);
+}
+
+/* 2) Theme Designer mapped variables */
+:root[data-theme='dark'] {
+  --bg: var(--dark-bg);
+  --surface: var(--dark-surface);
+  --card-bg: var(--dark-surface);
+  --text: var(--dark-text);
+  --heading: var(--dark-heading);
+  --muted: var(--dark-muted);
+  --border: var(--dark-border);
+  --card-border: var(--dark-border);
+  --header-bg: #0f172a;
+  --header-text: #f8fafc;
+  --header-border: var(--dark-border);
+  --topbar-bg: #020617;
+  --topbar-text: #cbd5e1;
+  --topbar-link: #cbd5e1;
+  --menu-hover: #17243b;
+  --btn-bg: var(--dark-accent);
+  --card-shadow: 0 8px 24px rgba(0, 0, 0, .45);
+  --footer-bg: #020617;
+  --footer-text: #dbeafe;
+  --footer-border: $(footerBorder);
+  --footer-title: #f8fafc;
+  --footer-link: $(footerLink);
+}
+
+/* 3) Reset / normalization */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+img { max-width: 100%; display: block; height: auto; }
+ul { margin: 0; padding: 0; list-style: none; }
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* 4) Typography */
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--text-size);
+  line-height: 1.65;
+  overflow-x: clip;
+}
+body.menu-open { overflow: hidden; }
+h1, h2, h3, h4 { margin: 0 0 .6rem; color: var(--heading); font-family: var(--font-heading); }
+h1, h2, h3 { font-weight: var(--title-weight); line-height: 1.25; }
+
+/* 5) Layout containers */
+.container { width: min(calc(100% - 2rem), var(--site-width)); margin-inline: auto; }
+main.container > section,
+main.container > .layout-grid { margin-top: 1.25rem; }
+.layout-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: var(--content-gap);
+  align-items: start;
+}
+.layout-grid.is-single { grid-template-columns: minmax(0, 860px); justify-content: center; }
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+}
+
+/* 6) Header */
+.topbar {
+  background: var(--topbar-bg);
+  color: var(--topbar-text);
+  font-size: .84rem;
+}
+.topbar-row { min-height: 40px; display: flex; align-items: center; gap: .75rem; }
+.topbar-links { display: flex; gap: .85rem; flex-wrap: wrap; }
+.topbar a { color: var(--topbar-link); opacity: .95; }
+.topbar-date { margin-left: auto; opacity: .85; }
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 70;
+  background: color-mix(in srgb, var(--header-bg) 92%, transparent);
+  color: var(--header-text);
+  border-bottom: 1px solid var(--header-border);
+  backdrop-filter: blur(10px);
+}
+.header-main { min-height: 74px; display: flex; align-items: center; gap: 1rem; }
+.branding { color: var(--primary); font-weight: 900; letter-spacing: .01em; font-size: clamp(1.1rem, 2.4vw, 1.42rem); }
+.header-actions { margin-left: auto; display: flex; gap: .5rem; }
+.icon-btn {
+  width: 42px; height: 42px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--surface) 95%, #fff), var(--surface));
+  color: var(--header-text);
+  display: grid; place-items: center;
+  cursor: pointer;
+}
+
+.search-panel {
+  display: none;
+  padding: 0 0 .85rem;
+}
+.search-panel.active { display: block; }
+.search-panel form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: .55rem;
+}
+.search-panel input {
+  min-height: 42px;
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--surface) 95%, #fff), var(--surface));
+  color: var(--text);
+  border-radius: var(--btn-radius);
+  padding: .65rem .8rem;
+}
+.search-panel button {
+  min-height: 42px;
+  border: 1px solid var(--btn-bg);
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  border-radius: var(--btn-radius);
+  padding: .65rem .9rem;
+  cursor: pointer;
+}
+
+/* 7) Navigation and mega menu */
+.desktop-nav { display: none; }
+.desktop-nav > ul { display: flex; align-items: center; gap: .35rem; }
+.desktop-nav a {
+  color: var(--header-text);
+  padding: .68rem .8rem;
+  border-radius: 10px;
+  font-weight: 650;
+  display: block;
+}
+.desktop-nav li { position: relative; }
+.desktop-nav li:hover > a,
+.desktop-nav li:focus-within > a { background: var(--menu-hover); text-decoration: none; }
+.mega-panel {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 8px);
+  min-width: 340px;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: var(--card-shadow);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: .2s ease;
+}
+.desktop-nav li:hover .mega-panel,
+.desktop-nav li:focus-within .mega-panel {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.mobile-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 6, 23, .55);
+  opacity: 0;
+  visibility: hidden;
+  transition: .2s;
+  z-index: 79;
+}
+.mobile-overlay.active { opacity: 1; visibility: visible; }
+.mobile-drawer {
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: min(84vw, 340px);
+  z-index: 80;
+  transform: translateX(-100%);
+  transition: transform .28s ease;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  padding: 1rem;
+}
+.mobile-drawer.active { transform: translateX(0); }
+.mobile-drawer a { display: block; padding: .8rem .5rem; color: var(--text); border-bottom: 1px dashed var(--border); }
+
+/* 8) Breaking ticker */
+.breaking-wrap { margin-top: 1rem; }
+.breaking {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--surface) 95%, #fff), var(--surface));
+  border-radius: 12px;
+  overflow: hidden;
+}
+.breaking-label {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 800;
+  font-size: .75rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  padding: .7rem .85rem;
+}
+.breaking-track {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 0 .85rem;
+}
+.breaking-track a { color: var(--text); font-weight: 600; font-size: .92rem; }
+
+/* 9) Featured slider / hero */
+.home-hero { margin-top: 1rem; }
+.hero-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr);
+  gap: 1rem;
+}
+.hero-slider { overflow: hidden; }
+.slider-track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  touch-action: pan-x;
+}
+.slider-track::-webkit-scrollbar { display: none; }
+.slide { position: relative; scroll-snap-align: start; min-height: clamp(250px, 35vw, 440px); }
+.slide-media {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: linear-gradient(180deg, #e2e8f0, #cbd5e1);
+}
+.slide-overlay {
+  position: absolute;
+  inset: auto 1rem 1rem;
+  background: linear-gradient(180deg, rgba(15,23,42,.2), rgba(15,23,42,.86));
+  color: #fff;
+  border-radius: 12px;
+  padding: .9rem 1rem;
+  max-width: min(92%, 670px);
+}
+.slide-overlay h2 { color: #fff; font-size: clamp(1rem, 2.1vw, 1.5rem); margin: 0; }
+.hero-side { display: grid; gap: .9rem; }
+.hero-mini { display: grid; grid-template-columns: 110px minmax(0,1fr); gap: .8rem; align-items: center; padding: .75rem; }
+.hero-mini img { width: 110px; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 10px; }
+.hero-mini h3 { margin: 0; font-size: .95rem; }
+
+/* 10) Post cards / grids */
+.home-section { margin-top: 1.3rem; }
+.section-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: .85rem; }
+.section-head h2 { font-size: 1.18rem; position: relative; padding-inline-start: .85rem; }
+.section-head h2::before { content: ""; position: absolute; inset-inline-start: 0; top: .2em; width: 4px; height: 1em; border-radius: 10px; background: linear-gradient(180deg, var(--primary), var(--secondary)); }
+.section-head a { font-weight: 700; font-size: .88rem; }
+.post-grid { display: grid; gap: 1rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.post-card { overflow: hidden; }
+.post-thumb {
+  display: block;
+  aspect-ratio: 16 / 10;
+  background: linear-gradient(180deg, #e2e8f0, #cbd5e1);
+  overflow: hidden;
+}
+.post-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.post-content { padding: .95rem; }
+.post-meta { color: var(--muted); font-size: .84rem; margin-bottom: .45rem; }
+.post-title { font-size: 1.03rem; line-height: 1.38; margin-bottom: .45rem; }
+.post-excerpt { color: var(--muted); font-size: .92rem; margin: 0; }
+.post-card { transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+.post-card:hover { transform: translateY(-3px); box-shadow: 0 14px 24px rgba(15, 23, 42, .11); border-color: color-mix(in srgb, var(--primary) 28%, var(--card-border)); }
+
+/* 11) Sidebar widgets */
+.sidebar { display: grid; gap: var(--widget-gap); }
+.widget-box { padding: 1rem 1.05rem; }
+.widget-box h3 { font-size: 1rem; margin-bottom: .75rem; }
+.widget-box li + li { margin-top: .65rem; }
+.widget-box a { color: var(--text); font-weight: 600; }
+.ad-slot {
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  min-height: 120px;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+}
+
+/* 12) Single post typography */
+.single-wrap { padding: clamp(1.15rem, 2.2vw, 2.2rem); }
+.single-title { font-size: clamp(1.5rem, 3vw, 2.2rem); margin-bottom: .75rem; }
+.single-meta { color: var(--muted); font-size: .9rem; margin-bottom: 1rem; padding-bottom: .7rem; border-bottom: 1px solid var(--border); }
+.single-featured {
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  margin-bottom: 1rem;
+  background: linear-gradient(180deg, #e2e8f0, #cbd5e1);
+}
+.single-content { font-size: 1.03rem; }
+.single-content p, .single-content ul, .single-content ol, .single-content blockquote { margin: 0 0 1rem; }
+.single-content h2, .single-content h3 { margin: 1.35rem 0 .7rem; }
+.single-content blockquote {
+  border-inline-start: 3px solid var(--primary);
+  margin-inline: 0;
+  padding: .4rem 0 .4rem .9rem;
+  color: var(--muted);
+}
+.single-content table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; }
+.single-content th, .single-content td { border: 1px solid var(--border); padding: .55rem; }
+.single-content pre, .single-content code { max-width: 100%; }
+.single-content pre { overflow: auto; border: 1px solid var(--border); border-radius: 10px; padding: .8rem; }
+.share-row { margin-top: 1.1rem; display: flex; flex-wrap: wrap; gap: .5rem; }
+.share-btn {
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--surface) 92%, #fff);
+  border-radius: var(--btn-radius);
+  padding: .5rem .75rem;
+  font-size: .84rem;
+  color: var(--text);
+}
+.related-list { display: grid; gap: .8rem; margin-top: 1rem; }
+
+/* 13) Footer modules */
+.footer {
+  margin-top: 2rem;
+  padding: 2.5rem 0 1.6rem;
+  background: var(--footer-bg);
+  color: var(--footer-text);
+}
+.footer-grid { display: grid; gap: 1rem; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.footer-col {
+  border: 1px solid var(--footer-border);
+  background: color-mix(in srgb, var(--footer-bg) 88%, #fff);
+  border-radius: 16px;
+  text-align: center;
+  padding: 1rem;
+  min-height: 140px;
+  transition: transform .2s ease, border-color .2s ease, background .2s ease;
+}
+.footer-col:hover {
+  transform: translateY(-3px);
+  border-color: var(--secondary);
+  background: rgba(255,255,255,.04);
+}
+.footer-col .title, .footer-col h2, .footer-col h3 { color: var(--footer-title); }
+.footer-col a { color: var(--footer-link); transition: color .2s ease; }
+.footer-col a:hover { color: #fff; }
+.footer-copy { margin-top: 1rem; text-align: center; font-size: .88rem; color: var(--footer-text); opacity: .9; }
+
+/* 14) Dark mode overrides (component tweaks) */
+:root[data-theme='dark'] .breaking-track a,
+:root[data-theme='dark'] .widget-box a,
+:root[data-theme='dark'] .share-btn { color: var(--dark-text); }
+
+/* 15) Responsive breakpoints */
+@media (min-width: 1024px) {
+  .desktop-nav { display: block; }
+  .menu-btn { display: none; }
+}
+@media (max-width: 1100px) {
+  .hero-shell { grid-template-columns: 1fr; }
+  .layout-grid { grid-template-columns: minmax(0, 1fr) 290px; }
+}
+@media (max-width: 900px) {
+  .layout-grid, .layout-grid.is-single { grid-template-columns: 1fr; }
+  .sidebar { order: 3; }
+  .post-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .container { width: min(calc(100% - 1.2rem), var(--site-width)); }
+  .topbar-row { min-height: 36px; }
+  .topbar-links { display: none; }
+  .topbar-date { margin-left: 0; }
+  .breaking { grid-template-columns: 1fr; }
+  .breaking-label { padding: .55rem .7rem; }
+  .slide-overlay { inset: auto .7rem .7rem; padding: .75rem .8rem; }
+  .section-head h2 { font-size: 1.08rem; }
+  .footer-grid { grid-template-columns: 1fr; }
+}
+
+/* 16) Utility helpers */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* 17) Motion reduction / accessibility helpers */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .breaking-track {
+    scroll-behavior: auto;
+  }
+}
+
+  ]]></b:skin>
 </head>
-
 <body>
+  <div class='mobile-overlay' id='mobileOverlay'></div>
+  <aside class='mobile-drawer' id='mobileDrawer' aria-hidden='true' aria-label='Mobile menu'>
+    <button class='icon-btn' id='menuClose' type='button' aria-label='Close menu'>&#10005;</button>
+    <b:section id='mobile-menu' showaddelement='yes'>
+      <b:widget id='PageListMobile' title='Mobile Menu' type='PageList' version='2' visible='true'>
+        <b:includable id='main'>
+          <ul>
+            <b:loop values='data:links' var='link'>
+              <li><a expr:href='data:link.href'><data:link.title/></a></li>
+            </b:loop>
+          </ul>
+        </b:includable>
+      </b:widget>
+    </b:section>
+  </aside>
 
-<h1><data:blog.title/></h1>
+  <div class='topbar'>
+    <div class='container topbar-row'>
+      <b:section id='top-utility' showaddelement='yes'>
+        <b:widget id='PageListTop' title='Top Links' type='PageList' version='2' visible='true'>
+          <b:includable id='main'>
+            <ul class='topbar-links'>
+              <b:loop values='data:links' var='link'>
+                <li><a expr:href='data:link.href'><data:link.title/></a></li>
+              </b:loop>
+            </ul>
+          </b:includable>
+        </b:widget>
+      </b:section>
+      <span class='topbar-date' id='topbarDate'></span>
+    </div>
+  </div>
 
-<b:section id='main' class='main' showaddelement='yes'/>
+  <header class='site-header'>
+    <div class='container'>
+      <div class='header-main'>
+        <button class='icon-btn menu-btn' id='menuToggle' type='button' aria-controls='mobileDrawer' aria-expanded='false' aria-label='Open menu'>&#9776;</button>
+        <a class='branding' expr:href='data:blog.homepageUrl'><data:blog.title/></a>
+        <nav class='desktop-nav' aria-label='Main navigation'>
+          <b:section id='main-menu' showaddelement='yes'>
+            <b:widget id='PageListMain' title='Main Menu' type='PageList' version='2' visible='true'>
+              <b:includable id='main'>
+                <ul>
+                  <b:loop values='data:links' var='link'>
+                    <li>
+                      <a expr:href='data:link.href'><data:link.title/></a>
+                      <div class='mega-panel'>
+                        <strong><data:link.title/></strong>
+                        <p>Highlight featured subtopics, custom links, or promoted categories from Layout widgets.</p>
+                      </div>
+                    </li>
+                  </b:loop>
+                </ul>
+              </b:includable>
+            </b:widget>
+          </b:section>
+        </nav>
+        <div class='header-actions'>
+          <button class='icon-btn' id='searchToggle' type='button' aria-controls='searchPanel' aria-expanded='false' aria-label='Toggle search'>&#9906;</button>
+          <button class='icon-btn' id='themeToggle' type='button' aria-label='Toggle dark mode'>&#9680;</button>
+        </div>
+      </div>
+      <div class='search-panel' id='searchPanel' aria-hidden='true'>
+        <form expr:action='data:blog.searchUrl' method='get'>
+          <label class='visually-hidden' for='searchInput'>Search</label>
+          <input id='searchInput' name='q' placeholder='Search news articles...' type='search'/>
+          <button type='submit'>Search</button>
+        </form>
+      </div>
+    </div>
+  </header>
 
+  <main class='container'>
+    <b:if cond='data:view.isHomepage'>
+      <section class='breaking-wrap'>
+        <div class='breaking'>
+          <span class='breaking-label'>Breaking</span>
+          <div class='breaking-track' id='breakingTrack'>
+            <b:section id='breaking-news' showaddelement='yes'>
+              <b:widget id='BlogTicker' title='Ticker' type='Blog' version='2' visible='true'>
+                <b:includable id='main'>
+                  <b:loop values='data:posts' var='post' index='i'>
+                    <b:if cond='data:i &lt; 8'>
+                      <a expr:href='data:post.url'><data:post.title/></a>
+                    </b:if>
+                  </b:loop>
+                </b:includable>
+              </b:widget>
+            </b:section>
+          </div>
+        </div>
+      </section>
+
+      <section class='home-hero'>
+        <div class='hero-shell'>
+          <div class='hero-slider card'>
+            <div class='slider-track' id='featuredTrack'>
+              <b:section id='featured-posts' showaddelement='yes'>
+                <b:widget id='BlogFeatured' title='Featured' type='Blog' version='2' visible='true'>
+                  <b:includable id='main'>
+                    <b:loop values='data:posts' var='post' index='i'>
+                      <b:if cond='data:i &lt; 4'>
+                        <article class='slide'>
+                          <a expr:href='data:post.url'>
+                            <b:if cond='data:post.featuredImage'>
+                              <b:if cond='data:i == 0'>
+                                <img class='slide-media' expr:alt='data:post.title' decoding='async' expr:src='resizeImage(data:post.featuredImage, 600, &quot;16:9&quot;)' expr:srcset='resizeImage(data:post.featuredImage, 300, &quot;16:9&quot;) + &quot; 300w, &quot; + resizeImage(data:post.featuredImage, 600, &quot;16:9&quot;) + &quot; 600w&quot;' fetchpriority='high' height='338' sizes='(max-width: 600px) 300px, 600px' width='600'/>
+                              <b:else/>
+                                <img class='slide-media' expr:alt='data:post.title' decoding='async' expr:src='resizeImage(data:post.featuredImage, 600, &quot;16:9&quot;)' expr:srcset='resizeImage(data:post.featuredImage, 300, &quot;16:9&quot;) + &quot; 300w, &quot; + resizeImage(data:post.featuredImage, 600, &quot;16:9&quot;) + &quot; 600w&quot;' height='338' loading='lazy' sizes='(max-width: 600px) 300px, 600px' width='600'/>
+                              </b:if>
+                            <b:else/>
+                              <img class='slide-media' expr:alt='data:post.title' decoding='async' height='338' loading='lazy' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjvX5q0tgv31yaM9DaVJcf2Il3uGViFeC4KxY5vNHjrDdBSGpYwT-dXsNGfQzYvzdq3hRwL1n0Qh1jhrM5w8v7Wngt6PmqLJUlIM9R6fY9_2kRg7od8CCSxTRI2Jx2R0ygSfgH7u9I9V2PV/s600/placeholder.jpg' width='600'/>
+                            </b:if>
+                            <div class='slide-overlay'><h2><data:post.title/></h2></div>
+                          </a>
+                        </article>
+                      </b:if>
+                    </b:loop>
+                  </b:includable>
+                </b:widget>
+              </b:section>
+            </div>
+          </div>
+
+          <div class='hero-side'>
+            <b:section id='hero-side' showaddelement='yes'>
+              <b:widget id='BlogHeroSide' title='Hero Side' type='Blog' version='2' visible='true'>
+                <b:includable id='main'>
+                  <b:loop values='data:posts' var='post' index='i'>
+                    <b:if cond='data:i &gt; 0 and data:i &lt; 4'>
+                      <article class='hero-mini card'>
+                        <a expr:href='data:post.url'>
+                          <b:if cond='data:post.featuredImage'>
+                            <img expr:alt='data:post.title' decoding='async' expr:src='resizeImage(data:post.featuredImage, 300, &quot;1:1&quot;)' height='300' loading='lazy' width='300'/>
+                          </b:if>
+                        </a>
+                        <h3><a expr:href='data:post.url'><data:post.title/></a></h3>
+                      </article>
+                    </b:if>
+                  </b:loop>
+                </b:includable>
+              </b:widget>
+            </b:section>
+          </div>
+        </div>
+      </section>
+    </b:if>
+
+    <div expr:class='data:view.isSingleItem ? &quot;layout-grid is-single&quot; : &quot;layout-grid&quot;'>
+      <section>
+        <b:section id='main-content' showaddelement='yes'>
+          <b:widget id='Blog1' locked='true' title='Main Posts' type='Blog' version='2' visible='true'>
+            <b:includable id='main'>
+              <b:if cond='data:view.isSingleItem'>
+                <b:loop values='data:posts' var='post'>
+                  <article class='card single-wrap'>
+                    <h1 class='single-title'><data:post.title/></h1>
+                    <div class='single-meta'><data:post.author.name/> · <data:post.timestamp/></div>
+                    <b:if cond='data:post.featuredImage'>
+                      <div class='single-featured'>
+                        <img expr:alt='data:post.title' decoding='async' expr:src='resizeImage(data:post.featuredImage, 600, &quot;16:9&quot;)' expr:srcset='resizeImage(data:post.featuredImage, 300, &quot;16:9&quot;) + &quot; 300w, &quot; + resizeImage(data:post.featuredImage, 600, &quot;16:9&quot;) + &quot; 600w&quot;' fetchpriority='high' height='338' sizes='(max-width: 600px) 300px, 600px' width='600'/>
+                      </div>
+                    </b:if>
+                    <div class='single-content entry-content'><data:post.body/></div>
+                    <div class='share-row'>
+                      <a class='share-btn' expr:href='&quot;https://twitter.com/intent/tweet?url=&quot; + data:post.url'>Share X</a>
+                      <a class='share-btn' expr:href='&quot;https://www.facebook.com/sharer/sharer.php?u=&quot; + data:post.url'>Share Facebook</a>
+                      <a class='share-btn' expr:href='&quot;https://wa.me/?text=&quot; + data:post.url'>Share WhatsApp</a>
+                    </div>
+                    <div class='related-list'>
+                      <b:section id='single-related' showaddelement='yes'>
+                        <b:widget id='PopularPostsSingle' title='Related / Popular' type='PopularPosts' version='2' visible='true'>
+                          <b:includable id='main'>
+                            <div class='widget-box card'>
+                              <h3><data:title/></h3>
+                              <ul>
+                                <b:loop values='data:posts' var='item'>
+                                  <li><a expr:href='data:item.href'><data:item.title/></a></li>
+                                </b:loop>
+                              </ul>
+                            </div>
+                          </b:includable>
+                        </b:widget>
+                      </b:section>
+                    </div>
+                  </article>
+                </b:loop>
+              <b:elseif cond='data:view.isHomepage'/>
+                <section class='home-section'>
+                  <div class='section-head'>
+                    <h2>Latest News</h2>
+                    <a expr:href='data:blog.homepageUrl + &quot;search&quot;'>View all</a>
+                  </div>
+                  <div class='post-grid'>
+                    <b:loop values='data:posts' var='post' index='i'>
+                      <b:if cond='data:i &lt; 8'>
+                        <article class='post-card card'>
+                          <a class='post-thumb' expr:href='data:post.url'>
+                            <b:if cond='data:post.featuredImage'>
+                              <img expr:alt='data:post.title' decoding='async' expr:src='resizeImage(data:post.featuredImage, 600, &quot;16:10&quot;)' expr:srcset='resizeImage(data:post.featuredImage, 300, &quot;16:10&quot;) + &quot; 300w, &quot; + resizeImage(data:post.featuredImage, 600, &quot;16:10&quot;) + &quot; 600w&quot;' height='375' loading='lazy' sizes='(max-width: 600px) 300px, 600px' width='600'/>
+                            </b:if>
+                          </a>
+                          <div class='post-content'>
+                            <div class='post-meta'><data:post.author.name/> · <data:post.timestamp/></div>
+                            <h3 class='post-title'><a expr:href='data:post.url'><data:post.title/></a></h3>
+                            <p class='post-excerpt'><data:post.snippet/></p>
+                          </div>
+                        </article>
+                      </b:if>
+                    </b:loop>
+                  </div>
+                </section>
+              <b:else/>
+                <section class='home-section'>
+                  <div class='section-head'><h2>Archive, Label &amp; Search Stories</h2></div>
+                  <div class='post-grid'>
+                    <b:loop values='data:posts' var='post'>
+                      <article class='post-card card'>
+                        <a class='post-thumb' expr:href='data:post.url'>
+                          <b:if cond='data:post.featuredImage'>
+                            <img expr:alt='data:post.title' decoding='async' expr:src='resizeImage(data:post.featuredImage, 600, &quot;16:10&quot;)' expr:srcset='resizeImage(data:post.featuredImage, 300, &quot;16:10&quot;) + &quot; 300w, &quot; + resizeImage(data:post.featuredImage, 600, &quot;16:10&quot;) + &quot; 600w&quot;' height='375' loading='lazy' sizes='(max-width: 600px) 300px, 600px' width='600'/>
+                          </b:if>
+                        </a>
+                        <div class='post-content'>
+                          <div class='post-meta'><data:post.author.name/> · <data:post.timestamp/></div>
+                          <h3 class='post-title'><a expr:href='data:post.url'><data:post.title/></a></h3>
+                          <p class='post-excerpt'><data:post.snippet/></p>
+                        </div>
+                      </article>
+                    </b:loop>
+                  </div>
+                </section>
+              </b:if>
+            </b:includable>
+          </b:widget>
+        </b:section>
+      </section>
+
+      <b:if cond='not data:view.isSingleItem'>
+        <aside class='sidebar'>
+          <b:section id='sidebar-main' showaddelement='yes'>
+            <b:widget id='PopularPosts1' title='Trending' type='PopularPosts' version='2' visible='true'>
+              <b:includable id='main'>
+                <div class='widget-box card'>
+                  <h3><data:title/></h3>
+                  <ul>
+                    <b:loop values='data:posts' var='post'>
+                      <li><a expr:href='data:post.href'><data:post.title/></a></li>
+                    </b:loop>
+                  </ul>
+                </div>
+              </b:includable>
+            </b:widget>
+            <b:widget id='LabelSidebar' title='Categories' type='Label' version='2' visible='true'/>
+            <b:widget id='HTMLAd' title='Advertisement' type='HTML' version='2' visible='true'>
+              <b:widget-settings><b:widget-setting name='content'><![CDATA[<div class='ad-slot'>Ad Space 300x250</div>]]></b:widget-setting></b:widget-settings>
+              <b:includable id='main'>
+                <div class='widget-box card'>
+                  <h3><data:title/></h3>
+                  <data:content/>
+                </div>
+              </b:includable>
+            </b:widget>
+          </b:section>
+        </aside>
+      </b:if>
+    </div>
+  </main>
+
+  <footer class='footer'>
+    <div class='container'>
+      <div class='footer-grid'>
+        <b:section class='footer-col' id='footer-1' showaddelement='yes'/>
+        <b:section class='footer-col' id='footer-2' showaddelement='yes'/>
+        <b:section class='footer-col' id='footer-3' showaddelement='yes'/>
+        <b:section class='footer-col' id='footer-4' showaddelement='yes'/>
+      </div>
+      <div class='footer-copy'>&#169; <span id='yearLabel'></span> <a expr:href='data:blog.homepageUrl'><data:blog.title/></a> · Nuzanthra Ultimate V3 MagNews Edition</div>
+    </div>
+  </footer>
+
+  <script><![CDATA[
+(function () {
+  const root = document.documentElement;
+  const body = document.body;
+
+  const safeGet = (key) => {
+    try { return localStorage.getItem(key); } catch (e) { return null; }
+  };
+  const safeSet = (key, value) => {
+    try { localStorage.setItem(key, value); } catch (e) { return; }
+  };
+
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const storedTheme = safeGet('nuzanthra-theme');
+  const applyTheme = (theme) => root.setAttribute('data-theme', theme);
+  applyTheme(storedTheme || (prefersDark ? 'dark' : 'light'));
+
+  const themeToggle = document.getElementById('themeToggle');
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const nextTheme = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      applyTheme(nextTheme);
+      safeSet('nuzanthra-theme', nextTheme);
+    });
+  }
+
+  const searchToggle = document.getElementById('searchToggle');
+  const searchPanel = document.getElementById('searchPanel');
+  if (searchToggle && searchPanel) {
+    searchToggle.setAttribute('aria-expanded', 'false');
+    searchPanel.setAttribute('aria-hidden', 'true');
+    searchToggle.addEventListener('click', () => {
+      const open = !searchPanel.classList.contains('active');
+      searchPanel.classList.toggle('active', open);
+      searchToggle.setAttribute('aria-expanded', String(open));
+      searchPanel.setAttribute('aria-hidden', String(!open));
+    });
+  }
+
+  const menuToggle = document.getElementById('menuToggle');
+  const menuClose = document.getElementById('menuClose');
+  const drawer = document.getElementById('mobileDrawer');
+  const overlay = document.getElementById('mobileOverlay');
+
+  const closeDrawer = () => {
+    if (drawer) drawer.classList.remove('active');
+    if (overlay) overlay.classList.remove('active');
+    if (body) body.classList.remove('menu-open');
+    if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
+    if (drawer) drawer.setAttribute('aria-hidden', 'true');
+  };
+
+  if (menuToggle && drawer && overlay) {
+    menuToggle.setAttribute('aria-expanded', 'false');
+    drawer.setAttribute('aria-hidden', 'true');
+    menuToggle.addEventListener('click', () => {
+      drawer.classList.add('active');
+      overlay.classList.add('active');
+      if (body) body.classList.add('menu-open');
+      menuToggle.setAttribute('aria-expanded', 'true');
+      drawer.setAttribute('aria-hidden', 'false');
+    });
+    overlay.addEventListener('click', closeDrawer);
+  }
+  if (menuClose) menuClose.addEventListener('click', closeDrawer);
+  if (drawer) {
+    drawer.addEventListener('click', (event) => {
+      const target = event.target;
+      if (target && target.tagName === 'A') closeDrawer();
+    });
+  }
+
+  const sliderTrack = document.getElementById('featuredTrack');
+  let sliderTimer = null;
+  let sliderIndex = 0;
+  const slides = sliderTrack ? sliderTrack.children.length : 0;
+
+  const goToSlide = (index) => {
+    if (!sliderTrack || !slides) return;
+    const width = sliderTrack.clientWidth || 1;
+    const next = (index + slides) % slides;
+    sliderTrack.scrollTo({ left: next * width, behavior: 'smooth' });
+    sliderIndex = next;
+  };
+
+  const stopSlider = () => {
+    if (sliderTimer) {
+      clearInterval(sliderTimer);
+      sliderTimer = null;
+    }
+  };
+
+  const startSlider = () => {
+    if (!sliderTrack || slides < 2) return;
+    stopSlider();
+    sliderTimer = setInterval(() => goToSlide(sliderIndex + 1), 5000);
+  };
+
+  const debounce = (fn, delay) => {
+    let t;
+    return () => {
+      clearTimeout(t);
+      t = setTimeout(fn, delay);
+    };
+  };
+
+  if (sliderTrack && slides > 1) {
+    startSlider();
+
+    sliderTrack.addEventListener('scroll', debounce(() => {
+      const w = sliderTrack.clientWidth || 1;
+      sliderIndex = Math.round(sliderTrack.scrollLeft / w);
+    }, 90), { passive: true });
+
+    sliderTrack.addEventListener('mouseenter', stopSlider);
+    sliderTrack.addEventListener('mouseleave', startSlider);
+    sliderTrack.addEventListener('touchstart', stopSlider, { passive: true });
+    sliderTrack.addEventListener('touchend', startSlider, { passive: true });
+    sliderTrack.addEventListener('pointerdown', stopSlider);
+    sliderTrack.addEventListener('pointerup', startSlider);
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) stopSlider();
+      else startSlider();
+    });
+  }
+
+  const tickerTrack = document.getElementById('breakingTrack');
+  let tickerTimer = null;
+  if (tickerTrack && tickerTrack.scrollWidth > tickerTrack.clientWidth) {
+    const resetTicker = () => {
+      if (tickerTrack.scrollLeft >= tickerTrack.scrollWidth - tickerTrack.clientWidth - 2) {
+        tickerTrack.scrollLeft = 0;
+      } else {
+        tickerTrack.scrollLeft += 1;
+      }
+    };
+    tickerTimer = setInterval(resetTicker, 26);
+
+    tickerTrack.addEventListener('mouseenter', () => clearInterval(tickerTimer));
+    tickerTrack.addEventListener('mouseleave', () => {
+      clearInterval(tickerTimer);
+      tickerTimer = setInterval(resetTicker, 26);
+    });
+    tickerTrack.addEventListener('touchstart', () => clearInterval(tickerTimer), { passive: true });
+    tickerTrack.addEventListener('touchend', () => {
+      clearInterval(tickerTimer);
+      tickerTimer = setInterval(resetTicker, 26);
+    }, { passive: true });
+  }
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      closeDrawer();
+      if (searchPanel && searchPanel.classList.contains('active')) {
+        searchPanel.classList.remove('active');
+        searchPanel.setAttribute('aria-hidden', 'true');
+        if (searchToggle) searchToggle.setAttribute('aria-expanded', 'false');
+      }
+    }
+  });
+
+  const yearLabel = document.getElementById('yearLabel');
+  if (yearLabel) yearLabel.textContent = String(new Date().getFullYear());
+
+  const dateLabel = document.getElementById('topbarDate');
+  if (dateLabel) {
+    dateLabel.textContent = new Date().toLocaleDateString(undefined, {
+      weekday: 'short', year: 'numeric', month: 'short', day: 'numeric'
+    });
+  }
+
+  window.addEventListener('resize', debounce(() => {
+    goToSlide(sliderIndex);
+    if (window.innerWidth > 1023) closeDrawer();
+  }, 160));
+})();
+
+  ]]></script>
 </body>
-
-</b:template>
+</html>
