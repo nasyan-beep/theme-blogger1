@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<b:template xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title><data:blog.title/></title>
+</head>
+
+<body>
+
+<h1><data:blog.title/></h1>
+
+<b:section id='main' class='main' showaddelement='yes'/>
+
+</body>
+
+</b:template>
